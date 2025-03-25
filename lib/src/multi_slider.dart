@@ -8,7 +8,7 @@ class MultiSlider extends StatefulWidget {
     this.min = 0,
     this.onChangeStart,
     this.onChangeEnd,
-    this.color,
+    this.colors,
     this.rangeColors,
     this.thumbColor,
     this.thumbInactiveColor = Colors.grey,
@@ -47,7 +47,7 @@ class MultiSlider extends StatefulWidget {
   final double horizontalPadding;
 
   /// Bar and indicators active color.
-  final Color? color;
+  final List<Color>? colors;
 
   /// Bar range colors from left to right. Your choice here will be displayed
   /// unconditionally! If you want more control, use [trackbarBuilder] instead!
@@ -171,7 +171,7 @@ class _MultiSliderState extends State<MultiSlider> {
       };
     }
     final enabledThumbColor = widget.thumbColor ?? //
-        widget.color ??
+        widget.colors?[0] ??
         _sliderTheme.activeTrackColor ??
         _theme.colorScheme.primary;
 
@@ -181,11 +181,11 @@ class _MultiSliderState extends State<MultiSlider> {
         Colors.grey;
 
     final thumbColor = isDisabled ? disabledThumbColor : enabledThumbColor;
-    final enabledActiveTrackColor = widget.color ?? //
+    final enabledActiveTrackColor = widget.colors?[0] ?? //
         _sliderTheme.activeTrackColor ??
         _theme.colorScheme.primary;
 
-    final enabledInactiveTrackColor = widget.color?.withOpacity(0.24) ??
+    final enabledInactiveTrackColor = widget.colors?[0]?.withOpacity(0.24) ??
         _sliderTheme.inactiveTrackColor ??
         _theme.colorScheme.primary.withOpacity(0.24);
 
